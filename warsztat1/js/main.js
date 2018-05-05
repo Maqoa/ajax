@@ -1,26 +1,34 @@
 'use strict'
-var paragraf = document.getElementById('copy');
-var btnCopy = document.getElementById('btn-c');
-var btnPaste = document.getElementById('btn-p');
+var btn = document.getElementById('get');
 var output = document.getElementById('output');
 
-console.log(btnCopy);
-var txt = "";
+function pobierzDane(data){
+   ajax('GET', "http://echo.jsontest.com/userId/108/userName/Akademia108/userURL/akademia108.pl")
+}
 
-btnCopy.addEventListener('click', function(){
-    txt = paragraf.innerHTML;
-    console.log(txt);
+function ajax(method, url) {
+
+    var httpRequest = new XMLHttpRequest();
+    console.log(httpRequest);
+
+    httpRequest.open(method, url);
     
-});
+    httpRequest.addEventListener('readystatechange', function () {
 
-btnPaste.addEventListener('click', function(){
-    if(txt ==""){
-        output.innerHTML="Skopiuj tekst";
-        
-    }
-    else{
-        output.innerHTML = txt;
-    }
-   
-});
 
+        if (httpRequest.readyState == 4) {
+           
+
+            if (httpRequest.status == 200) {
+                var data = httpRequest.responseText;
+                output.innerHTML = data;
+
+            }
+
+        }
+    })
+
+    httpRequest.send();
+}
+
+btn.addEventListener('click', pobierzDane);

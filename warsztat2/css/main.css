@@ -1,0 +1,14 @@
+p, #output{
+    padding: 40px;
+    width: 500px;
+    
+}
+
+p{
+    margin: 0 auto;
+}
+
+#output{
+    border: 5px solid grey;
+    margin: 40px auto;
+}
